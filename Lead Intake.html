@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeadFlow | Qualified B2B Leads, Handled Fast</title>
+<meta name="description" content="Tell us about your company and get a tailored response from our team within one business day.">
+<style>
+  :root{
+    --bg:#0b1220; --bg2:#101a2e; --card:#ffffff; --ink:#0f172a; --muted:#64748b;
+    --accent:#14b8a6; --accent-d:#0d9488; --line:#e2e8f0; --err:#dc2626; --ok:#16a34a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Naskh Arabic",Arial,sans-serif;color:var(--ink);background:#f8fafc;line-height:1.6}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  header{background:var(--bg);color:#fff;position:sticky;top:0;z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;font-size:20px;letter-spacing:.3px}
+  .logo span{color:var(--accent)}
+  .nav-r{display:flex;gap:12px;align-items:center}
+  .lang{background:transparent;border:1px solid #334155;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px}
+  .lang:hover{border-color:var(--accent)}
+  .btn{display:inline-block;background:var(--accent);color:#04201c;font-weight:700;border:0;border-radius:10px;padding:12px 22px;font-size:16px;cursor:pointer;text-decoration:none;transition:.15s}
+  .btn:hover{background:#2dd4bf;transform:translateY(-1px)}
+  .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+  .hero{background:radial-gradient(1200px 500px at 80% -10%,#134e4a 0%,transparent 60%),var(--bg);color:#fff;padding:72px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+  .tag{display:inline-block;border:1px solid #1f3b3a;background:#0f2a2a;color:#5eead4;border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:18px}
+  h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin-bottom:18px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lead{color:#cbd5e1;font-size:18px;max-width:520px;margin-bottom:28px}
+  .stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:8px}
+  .stat b{display:block;font-size:26px;color:#fff}
+  .stat span{color:#94a3b8;font-size:14px}
+
+  .form-card{background:var(--card);color:var(--ink);border-radius:16px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+  .form-card h2{font-size:22px;margin-bottom:4px}
+  .form-card p.sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field{margin-bottom:14px}
+  label{display:block;font-size:14px;font-weight:600;margin-bottom:5px}
+  label small{font-weight:400;color:var(--muted)}
+  input,select,textarea{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);transition:.15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(20,184,166,.2)}
+  textarea{resize:vertical;min-height:80px}
+  .invalid{border-color:var(--err)!important}
+  .err{color:var(--err);font-size:12.5px;margin-top:4px;min-height:0;display:none}
+  .err.show{display:block}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin:6px 0 16px}
+  .consent input{width:auto;margin-top:4px}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  .submit{width:100%}
+  .status{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:14px;display:none}
+  .status.ok{display:block;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+  .status.bad{display:block;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+
+  section.block{padding:72px 0}
+  h3.title{font-size:30px;text-align:center;margin-bottom:8px}
+  p.title-sub{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 40px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+  .card .ic{width:44px;height:44px;border-radius:12px;background:#ccfbf1;color:var(--accent-d);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+  .card h4{font-size:18px;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:15px}
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--bg);color:var(--accent);font-weight:800;margin-bottom:10px}
+  .step h4{font-size:16px;margin-bottom:4px}
+  .step p{font-size:14px;color:var(--muted)}
+  .band{background:var(--bg2);color:#cbd5e1}
+  .band .title{color:#fff}
+  footer{background:var(--bg);color:#94a3b8;padding:32px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  [dir="rtl"] .consent{text-align:right}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:520px){
+    .row{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .hero{padding:48px 0 64px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Lead<span>Flow</span></div>
+    <div class="nav-r">
+      <button class="lang" id="langBtn" type="button">العربية</button>
+      <a class="btn" href="#contact" data-i18n="navCta">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag" data-i18n="tag">B2B growth, without the busywork</span>
+        <h1 data-i18n-html="h1">Turn every inquiry into a <em>qualified conversation</em></h1>
+        <p class="lead" data-i18n="lead">Tell us about your company. We review your needs, check the fit, and get back to you with a tailored response, usually within one business day.</p>
+        <div class="stats">
+          <div class="stat"><b>&lt; 24h</b><span data-i18n="s1">First response</span></div>
+          <div class="stat"><b>100%</b><span data-i18n="s2">Reviewed by a person</span></div>
+          <div class="stat"><b>0</b><span data-i18n="s3">Spam, ever</span></div>
+        </div>
+      </div>
+
+      <div class="form-card" id="contact">
+        <h2 data-i18n="fTitle">Request a tailored proposal</h2>
+        <p class="sub" data-i18n="fSub">Takes about a minute. We only use this to reply to you.</p>
+
+        <form id="leadForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="name"><span data-i18n="lName">Full name</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" maxlength="100" required>
+              <div class="err" data-for="name"></div>
+            </div>
+            <div class="field">
+              <label for="email"><span data-i18n="lEmail">Work email</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="150" required>
+              <div class="err" data-for="email"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="company"><span data-i18n="lCompany">Company</span></label>
+              <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" required>
+              <div class="err" data-for="company"></div>
+            </div>
+            <div class="field">
+              <label for="website"><span data-i18n="lWebsite">Company website</span></label>
+              <input id="website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="example.com" maxlength="200" required>
+              <div class="err" data-for="website"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="size"><span data-i18n="lSize">Company size</span> <small data-i18n="optional">(optional)</small></label>
+            <select id="size" name="company_size">
+              <option value="" data-i18n="selectOne">Select one</option>
+              <option value="1-10">1 to 10</option>
+              <option value="11-50">11 to 50</option>
+              <option value="51-200">51 to 200</option>
+              <option value="201-1000">201 to 1000</option>
+              <option value="1000+">1000+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message"><span data-i18n="lMsg">What are you looking for?</span> <small data-i18n="optional">(optional)</small></label>
+            <textarea id="message" name="message" maxlength="1000"></textarea>
+          </div>
+
+          <!-- Honeypot: real people never see or fill this field -->
+          <div class="hp" aria-hidden="true">
+            <label for="hp_field">Leave this empty</label>
+            <input id="hp_field" name="hp_field" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" name="consent">
+            <span data-i18n="consent">I agree to be contacted about my request. I can unsubscribe at any time and my data will not be shared.</span>
+          </label>
+          <div class="err" data-for="consent" style="margin-top:-10px;margin-bottom:12px"></div>
+
+          <button class="btn submit" id="submitBtn" type="submit" data-i18n="send">Send request</button>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h3 class="title" data-i18n="whyT">Why teams choose us</h3>
+      <p class="title-sub" data-i18n="whyS">Fast, relevant, and honest. No generic emails.</p>
+      <div class="cards">
+        <div class="card"><div class="ic">⚡</div><h4 data-i18n="c1t">Fast follow-up</h4><p data-i18n="c1p">Every request is checked right away, so hot opportunities reach a person immediately.</p></div>
+        <div class="card"><div class="ic">🎯</div><h4 data-i18n="c2t">Relevant to you</h4><p data-i18n="c2p">Replies are based on what your company actually does, never on guesses.</p></div>
+        <div class="card"><div class="ic">🔒</div><h4 data-i18n="c3t">Respect for your data</h4><p data-i18n="c3p">We collect only what we need, and unsubscribe requests are honored immediately.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block band">
+    <div class="wrap">
+      <h3 class="title" data-i18n="howT">How it works</h3>
+      <p class="title-sub" data-i18n="howS" style="color:#94a3b8">From your form to a real answer in four steps.</p>
+      <div class="steps">
+        <div class="step"><h4 data-i18n="st1t">You send the form</h4><p data-i18n="st1p">Share your company and what you need.</p></div>
+        <div class="step"><h4 data-i18n="st2t">We check the fit</h4><p data-i18n="st2p">We review your company and match it with how we can help.</p></div>
+        <div class="step"><h4 data-i18n="st3t">You hear from us</h4><p data-i18n="st3p">A tailored message from our team, or a direct call for urgent cases.</p></div>
+        <div class="step"><h4 data-i18n="st4t">You stay in control</h4><p data-i18n="st4p">Reply to continue or unsubscribe with one click.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr"></span> LeadFlow. <span data-i18n="demo">Academic capstone demo project.</span></div>
+    <div data-i18n="priv">We use your data only to answer your request.</div>
+  </div>
+</footer>
+
+<script>
+/* ============ CONFIG: غيّر السطر ده بس ============ */
+// Production URL من الـ Webhook node في n8n (مش الـ test URL)
+const WEBHOOK_URL = "https://YOUR-N8N-DOMAIN/webhook/lead-intake";
+/* ================================================== */
+
+const T = {
+  en:{navCta:"Get in touch",tag:"B2B growth, without the busywork",
+    h1:"Turn every inquiry into a <em>qualified conversation</em>",
+    lead:"Tell us about your company. We review your needs, check the fit, and get back to you with a tailored response, usually within one business day.",
+    s1:"First response",s2:"Reviewed by a person",s3:"Spam, ever",
+    fTitle:"Request a tailored proposal",fSub:"Takes about a minute. We only use this to reply to you.",
+    lName:"Full name",lEmail:"Work email",lCompany:"Company",lWebsite:"Company website",lSize:"Company size",
+    optional:"(optional)",selectOne:"Select one",lMsg:"What are you looking for?",
+    consent:"I agree to be contacted about my request. I can unsubscribe at any time and my data will not be shared.",
+    send:"Send request",sending:"Sending...",
+    whyT:"Why teams choose us",whyS:"Fast, relevant, and honest. No generic emails.",
+    c1t:"Fast follow-up",c1p:"Every request is checked right away, so hot opportunities reach a person immediately.",
+    c2t:"Relevant to you",c2p:"Replies are based on what your company actually does, never on guesses.",
+    c3t:"Respect for your data",c3p:"We collect only what we need, and unsubscribe requests are honored immediately.",
+    howT:"How it works",howS:"From your form to a real answer in four steps.",
+    st1t:"You send the form",st1p:"Share your company and what you need.",
+    st2t:"We check the fit",st2p:"We review your company and match it with how we can help.",
+    st3t:"You hear from us",st3p:"A tailored message from our team, or a direct call for urgent cases.",
+    st4t:"You stay in control",st4p:"Reply to continue or unsubscribe with one click.",
+    demo:"Academic capstone demo project.",priv:"We use your data only to answer your request.",
+    eReq:"This field is required.",eEmail:"Please enter a valid email address.",
+    eFree:"Please use your work email (not Gmail, Yahoo, etc.).",
+    eSite:"Please enter a valid website, e.g. example.com",eConsent:"Please accept to continue.",
+    ok:"Thank you! We received your request and will reply soon.",
+    bad:"Something went wrong. Please try again in a moment.",dup:"We already have a request from this email. We will be in touch."},
+  ar:{navCta:"تواصل معنا",tag:"نمو الأعمال بين الشركات، من غير تعب",
+    h1:"حوّل كل استفسار إلى <em>محادثة مؤهلة</em>",
+    lead:"عرّفنا بشركتك. هنراجع احتياجك ونتأكد من التوافق ونرد عليك برد مخصص، غالباً خلال يوم عمل واحد.",
+    s1:"أول رد",s2:"مراجعة بشرية",s3:"رسائل مزعجة",
+    fTitle:"اطلب عرضاً مخصصاً",fSub:"بياخد دقيقة تقريباً. بنستخدم بياناتك للرد عليك فقط.",
+    lName:"الاسم الكامل",lEmail:"إيميل العمل",lCompany:"الشركة",lWebsite:"موقع الشركة",lSize:"حجم الشركة",
+    optional:"(اختياري)",selectOne:"اختر",lMsg:"إيه اللي بتدور عليه؟",
+    consent:"أوافق على التواصل معي بخصوص طلبي. أقدر ألغي الاشتراك في أي وقت وبياناتي لن تتم مشاركتها.",
+    send:"إرسال الطلب",sending:"جاري الإرسال...",
+    whyT:"ليه الفرق بتختارنا",whyS:"سريع ومناسب وصادق. من غير رسائل عامة.",
+    c1t:"متابعة سريعة",c1p:"كل طلب بيتراجع فوراً، فالفرص المهمة بتوصل لشخص حقيقي على طول.",
+    c2t:"مناسب ليك",c2p:"الردود مبنية على نشاط شركتك الفعلي، مش على تخمينات.",
+    c3t:"احترام لبياناتك",c3p:"بنجمع اللازم بس، وطلبات إلغاء الاشتراك بتتنفذ فوراً.",
+    howT:"إزاي بنشتغل",howS:"من الفورم لرد حقيقي في أربع خطوات.",
+    st1t:"تبعت الفورم",st1p:"عرّفنا بشركتك واحتياجك.",
+    st2t:"نتأكد من التوافق",st2p:"بنراجع شركتك ونطابقها مع اللي نقدر نقدمه.",
+    st3t:"بنرد عليك",st3p:"رسالة مخصصة من فريقنا، أو مكالمة مباشرة للحالات العاجلة.",
+    st4t:"التحكم في إيدك",st4p:"رد عشان تكمل أو ألغِ الاشتراك بضغطة.",
+    demo:"مشروع تخرج أكاديمي تجريبي.",priv:"بنستخدم بياناتك للرد على طلبك فقط.",
+    eReq:"الحقل ده مطلوب.",eEmail:"اكتب إيميل صحيح.",
+    eFree:"استخدم إيميل العمل (مش Gmail أو Yahoo وخلافه).",
+    eSite:"اكتب موقع صحيح، مثلاً example.com",eConsent:"لازم توافق عشان تكمل.",
+    ok:"شكراً! استلمنا طلبك وهنرد عليك قريباً.",
+    bad:"حصلت مشكلة. جرّب تاني بعد شوية.",dup:"عندنا طلب سابق من الإيميل ده. هنتواصل معاك."}
+};
+let lang = "en";
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  $$("[data-i18n]").forEach(el => { const v = T[lang][el.dataset.i18n]; if(v) el.textContent = v; });
+  $$("[data-i18n-html]").forEach(el => { el.innerHTML = T[lang][el.dataset.i18nHtml]; });
+  $("#langBtn").textContent = lang === "en" ? "العربية" : "English";
+  $("#website").placeholder = "example.com";
+}
+$("#langBtn").addEventListener("click", () => { lang = lang === "en" ? "ar" : "en"; applyLang(); });
+$("#yr").textContent = new Date().getFullYear();
+
+/* ---------- Validation ---------- */
+const FREE = ["gmail.com","yahoo.com","hotmail.com","outlook.com","live.com","icloud.com","aol.com","proton.me","protonmail.com"];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function normalizeWebsite(v){
+  v = v.trim().toLowerCase().replace(/\s+/g,"");
+  if(!v) return "";
+  if(!/^https?:\/\//.test(v)) v = "https://" + v;
+  try{
+    const u = new URL(v);
+    if(!u.hostname.includes(".")) return "";
+    return u.origin;            // https://example.com
+  }catch(e){ return ""; }
+}
+function setErr(name, msg){
+  const box = document.querySelector('.err[data-for="'+name+'"]');
+  const inp = document.getElementById(name);
+  if(box){ box.textContent = msg || ""; box.classList.toggle("show", !!msg); }
+  if(inp && inp.type !== "checkbox") inp.classList.toggle("invalid", !!msg);
+}
+function validate(d){
+  const t = T[lang]; let ok = true;
+  ["name","email","company","website","consent"].forEach(k => setErr(k,""));
+  if(!d.name.trim()){ setErr("name",t.eReq); ok=false; }
+  if(!d.email.trim()){ setErr("email",t.eReq); ok=false; }
+  else if(!EMAIL_RE.test(d.email.trim())){ setErr("email",t.eEmail); ok=false; }
+  else if(FREE.includes(d.email.trim().toLowerCase().split("@")[1])){ setErr("email",t.eFree); ok=false; }
+  if(!d.company.trim()){ setErr("company",t.eReq); ok=false; }
+  if(!d.websiteNorm){ setErr("website", d.website.trim() ? t.eSite : t.eReq); ok=false; }
+  if(!d.consent){ setErr("consent",t.eConsent); ok=false; }
+  return ok;
+}
+
+/* ---------- Submit ---------- */
+function newId(){ return (crypto.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.random().toString(16).slice(2)); }
+const params = new URLSearchParams(location.search);
+const utm = {};
+["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach(k => { if(params.get(k)) utm[k] = params.get(k).slice(0,100); });
+
+$("#leadForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const st = $("#status"); st.className = "status"; st.textContent = "";
+  const f = e.target;
+
+  // Honeypot: bots fill it. Pretend success and send nothing.
+  if(f.hp_field.value){ st.className = "status ok"; st.textContent = T[lang].ok; return; }
+
+  const d = {
+    name: f.name.value, email: f.email.value, company: f.company.value,
+    website: f.website.value, websiteNorm: normalizeWebsite(f.website.value),
+    consent: f.consent.checked
+  };
+  if(!validate(d)) return;
+
+  const payload = {
+    client_request_id: newId(),
+    source: "form",
+    contact: {
+      name: d.name.trim().replace(/\s+/g," "),
+      email: d.email.trim().toLowerCase(),
+      company: d.company.trim().replace(/\s+/g," "),
+      website: d.websiteNorm
+    },
+    company_size: f.company_size.value || null,
+    message: f.message.value.trim().slice(0,1000) || null,
+    consent: true,
+    consent_text: T.en.consent,
+    consent_at: new Date().toISOString(),
+    page_lang: lang,
+    utm: utm,
+    page_url: location.origin + location.pathname,
+    submitted_at: new Date().toISOString()
+  };
+
+  const btn = $("#submitBtn"); btn.disabled = true; btn.textContent = T[lang].sending;
+  try{
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), 15000);
+    const res = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(payload),
+      signal: ctrl.signal
+    });
+    clearTimeout(to);
+    if(res.status === 409){ st.className = "status ok"; st.textContent = T[lang].dup; f.reset(); }
+    else if(!res.ok) throw new Error("HTTP " + res.status);
+    else { st.className = "status ok"; st.textContent = T[lang].ok; f.reset(); }
+  }catch(err){
+    console.error(err);
+    st.className = "status bad"; st.textContent = T[lang].bad;
+  }finally{
+    btn.disabled = false; btn.textContent = T[lang].send;
+  }
+});
+
+applyLang();
+</script>
+</body>
+</html>
