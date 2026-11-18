@@ -363,7 +363,11 @@ $("#leadForm").addEventListener("submit", async e => {
     const to = setTimeout(() => ctrl.abort(), 15000);
     const res = await fetch(WEBHOOK_URL, {
       method: "POST",
-      headers: {"Content-Type":"application/json"},
+      headers: 
+      {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true"
+      },      
       body: JSON.stringify(payload),
       signal: ctrl.signal
     });
