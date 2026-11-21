@@ -145,8 +145,8 @@
             </div>
           </div>
           <div class="field">
-            <label for="size"><span data-i18n="lSize">Company size</span> <small data-i18n="optional">(optional)</small></label>
-            <select id="size" name="company_size">
+            <label for="size"><span data-i18n="lSize">Company size</span></label>
+            <select id="size" name="company_size" required>
               <option value="" data-i18n="selectOne">Select one</option>
               <option value="1-10">1 to 10</option>
               <option value="11-50">11 to 50</option>
@@ -154,6 +154,7 @@
               <option value="201-1000">201 to 1000</option>
               <option value="1000+">1000+</option>
             </select>
+            <div class="err" data-for="size"></div>
           </div>
           <div class="field">
             <label for="message"><span data-i18n="lMsg">What are you looking for?</span> <small data-i18n="optional">(optional)</small></label>
@@ -305,12 +306,13 @@ function setErr(name, msg){
 }
 function validate(d){
   const t = T[lang]; let ok = true;
-  ["name","email","company","website","consent"].forEach(k => setErr(k,""));
+  ["name","email","company","website","size","consent"].forEach(k => setErr(k,""));
   if(!d.name.trim()){ setErr("name",t.eReq); ok=false; }
   if(!d.email.trim()){ setErr("email",t.eReq); ok=false; }
   else if(!EMAIL_RE.test(d.email.trim())){ setErr("email",t.eEmail); ok=false; }
   else if(FREE.includes(d.email.trim().toLowerCase().split("@")[1])){ setErr("email",t.eFree); ok=false; }
   if(!d.company.trim()){ setErr("company",t.eReq); ok=false; }
+  if(!d.size){ setErr("size",t.eReq); ok=false; }
   if(!d.websiteNorm){ setErr("website", d.website.trim() ? t.eSite : t.eReq); ok=false; }
   if(!d.consent){ setErr("consent",t.eConsent); ok=false; }
   return ok;
@@ -333,7 +335,7 @@ $("#leadForm").addEventListener("submit", async e => {
   const d = {
     name: f.name.value, email: f.email.value, company: f.company.value,
     website: f.website.value, websiteNorm: normalizeWebsite(f.website.value),
-    consent: f.consent.checked
+    size: f.company_size.value, consent: f.consent.checked
   };
   if(!validate(d)) return;
 
